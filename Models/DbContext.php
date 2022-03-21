@@ -2,23 +2,23 @@
 
 use Illuminate\Database\Capsule\Manager;
 
-class DatabaseConnector
+class DbContext
 {
-    private $dbc;
+    private Manager $dbContext;
 
     public function __construct()
     {
-        $this->dbc = new Manager();
-        $this->dbc->addConnection(CONNECTION_STRING);
-        $this->dbc->setAsGlobal();
-        $this->dbc->bootEloquent();
+        $this->dbContext = new Manager();
+        $this->dbContext->addConnection(CONNECTION_STRING);
+        $this->dbContext->setAsGlobal();
+        $this->dbContext->bootEloquent();
     }
 
     /**
      * @return Manager
      */
-    public function getDbc()
+    public function getDbContext(): Manager
     {
-        return $this->dbc;
+        return $this->dbContext;
     }
 }

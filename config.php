@@ -6,3 +6,4 @@ const CONNECTION_STRING = [
     "username" => "root",
     "password" => ""
 ];
+const PAGE_SIZE = 10;
