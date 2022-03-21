@@ -1,0 +1,24 @@
+{
+  "name": "eldfrawy/php-webapi-demo",
+  "description": "description",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "modafro",
+      "email": "Mohamed.Eldefrawy13026011@aiet.edu.eg"
+    }
+  ],
+  "require": {
+    "illuminate/database": "*"
+  },
+  "autoload": {
+    "classmap": [
+      "Models",
+      "Services"
+    ],
+    "files": [
+      "config.php"
+    ]
+  }
+}
