@@ -9,6 +9,11 @@ switch ($method) {
             $itemsController->getItem();
         }
         break;
+    case "delete" :
+        {
+            $itemsController->deleteItem();
+        }
+        break;
 
 }
 

@@ -55,4 +55,11 @@ class ItemsControllers
         $items = $this->itemsService->selectItem($this->resourceId);
         ResponseHandlers::sendResponse($items, 200);
     }
+
+    public function deleteItem()
+    {
+        header("Content-Type:application/json");
+        $items = $this->itemsService->deleteItem($this->resourceId);
+        ResponseHandlers::sendResponse($items, 200);
+    }
 }
