@@ -9,11 +9,10 @@ class Routes
 
         switch ($request) {
             case '/items':
-            case '/items/id':
-                require_once("./Handlers/HttpRequestHandler.php");
-                break;
-            case '/glasses':
                 require_once('./Views/glasses.php');
+                break;
+            case '/items/id':
+                require_once('./Views/glass.php');
                 break;
         }
     }

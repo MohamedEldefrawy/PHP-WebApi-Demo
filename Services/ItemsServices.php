@@ -23,7 +23,7 @@ class ItemsService
         if ($all_records->count() > 0) {
             return [
                 'success' => true,
-                "all_records" => $all_records,
+                "data" => $all_records,
                 "next_link" => $next_link,
                 "previous_link" => $previous_link,
                 'message' => "all items has been retrieved successfully"
@@ -66,5 +66,22 @@ class ItemsService
                     'success' => false,
                     'message' => "Selected item hasn't been deleted"
                 ];
+    }
+
+    public function selectItem($id): array
+    {
+        $result = $this->dbContext->getDbContext()::table('items')->where('id', $id)->first();
+        if ($result != null) {
+            return [
+                'success' => true,
+                'message' => "Selected item has been retrieved successfully",
+                'data' => $result
+            ];
+        } else {
+            return [
+                'success' => false,
+                'message' => "Selected item hasn't been retrieved"
+            ];
+        }
     }
 }

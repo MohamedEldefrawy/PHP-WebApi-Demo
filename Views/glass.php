@@ -5,10 +5,9 @@ $request->validateResource();
 $method = strtolower($_SERVER["REQUEST_METHOD"]);
 switch ($method) {
     case "get" :
-    {
-        echo $method;
-        $request->getItems();
+        {
+            $request->getItem();
+        }
         break;
-    }
 
 }

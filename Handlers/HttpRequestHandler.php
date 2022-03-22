@@ -4,13 +4,12 @@ use JetBrains\PhpStorm\NoReturn;
 
 class HttpRequestHandler
 {
-    private $method;
-    private $params = array();
-    private $resource;
-    private $resourceId;
+    private array $params = array();
+    private string $resource;
+    private string $resourceId;
     private array $allowedMethods = ["GET", "POST", "DELETE"];
     private array $allowedResources = ["items"];
-    private $itemsService;
+    private ItemsService $itemsService;
 
 
     public function __construct()
@@ -37,35 +36,39 @@ class HttpRequestHandler
         }
     }
 
-    #[NoReturn] public function sendErrorResponse($status, $error)
+    private function sendErrorResponse($status, $error)
     {
         $response = [
             "status" => false,
             "message" => $error
         ];
+
         http_response_code($status);
         header("Content-Type:application/json");
 
         echo json_encode($response, true);
-        exit();
     }
 
-    #[NoReturn] public function sendResponse($response, $status)
+    private function sendResponse($response)
     {
-
-        http_response_code($status);
+        http_response_code(200);
         header("Content-Type:application/json");
 
         echo json_encode($response, true);
-        exit();
     }
 
 
-    #[NoReturn] function getItems()
+    #[NoReturn] public function getItems()
     {
         header("Content-Type:application/json");
         $items = $this->itemsService->getAllItems();
-        $this->sendResponse($items, 200);
+        $this->sendResponse($items);
     }
 
+    #[NoReturn] public function getItem()
+    {
+        header("Content-Type:application/json");
+        $items = $this->itemsService->selectItem($this->resourceId);
+        $this->sendResponse($items);
+    }
 }
