@@ -1,6 +1,6 @@
 <?php
 
-class RequestHandlers
+class ResponseHandlers
 {
     public static function sendResponse($response, $statusCode)
     {

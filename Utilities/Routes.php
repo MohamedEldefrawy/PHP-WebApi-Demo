@@ -17,7 +17,7 @@ class Routes
                 "message" => "Bad request",
             ];
 
-            RequestHandlers::sendResponse($badRequest, 404);
+            ResponseHandlers::sendResponse($badRequest, 404);
         }
 
         $requestParameters = explode("/", $_SERVER["REQUEST_URI"]);

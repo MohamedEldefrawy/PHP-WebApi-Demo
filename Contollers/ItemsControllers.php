@@ -28,7 +28,7 @@ class ItemsControllers
                 "status" => false,
                 "message" => "BadRequest"
             ];
-            RequestHandlers::sendResponse($response, 405);
+            ResponseHandlers::sendResponse($response, 405);
         }
     }
 
@@ -39,7 +39,7 @@ class ItemsControllers
                 "status" => false,
                 "message" => "BadRequest"
             ];
-            RequestHandlers::sendResponse($response, 400);
+            ResponseHandlers::sendResponse($response, 400);
         }
     }
 
@@ -48,13 +48,13 @@ class ItemsControllers
     {
         header("Content-Type:application/json");
         $items = $this->itemsService->getAllItems();
-        RequestHandlers::sendResponse($items, 200);
+        ResponseHandlers::sendResponse($items, 200);
     }
 
     public function getItem()
     {
         header("Content-Type:application/json");
         $items = $this->itemsService->selectItem($this->resourceId);
-        RequestHandlers::sendResponse($items, 200);
+        ResponseHandlers::sendResponse($items, 200);
     }
 }
