@@ -15,7 +15,10 @@
   "autoload": {
     "classmap": [
       "Models",
-      "Services"
+      "Services",
+      "Handlers",
+      "Utilities",
+      "Views"
     ],
     "files": [
       "config.php"
