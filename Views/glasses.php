@@ -10,5 +10,4 @@ switch ($method) {
         $itemsController->getItems();
         break;
     }
-
 }

@@ -6,11 +6,12 @@ class Routes
 
     public static function router()
     {
+        $items = new ItemsService();
         $request = $_SERVER['REQUEST_URI'];
         if (str_contains($_SERVER['REQUEST_URI'], "/items/id")) {
-            Routes::$uri = "/items/id/";
+            Routes::$uri = "/items/id";
         } else if (str_contains($_SERVER['REQUEST_URI'], "/items")) {
-            Routes::$uri = "/items/";
+            Routes::$uri = "/items";
         } else {
             $badRequest = [
                 "status" => false,
@@ -20,11 +21,11 @@ class Routes
             ResponseHandlers::sendResponse($badRequest, 404);
         }
 
-        $requestParameters = explode("/", $_SERVER["REQUEST_URI"]);
+//        var_dump($items->getAllItems());
 
         switch (Routes::$uri) {
             case '/items':
-                require_once('./Views/glasses.php');
+                require_once("./Views/glasses.php");
                 break;
             case '/items/id':
                 require_once('./Views/glass.php');
