@@ -2,7 +2,7 @@
 
 use JetBrains\PhpStorm\NoReturn;
 
-class HttpRequestHandler
+class ItemsControllers
 {
     private array $params = array();
     private string $resource;
@@ -15,9 +15,8 @@ class HttpRequestHandler
     public function __construct()
     {
         $requestParameters = explode("/", $_SERVER["REQUEST_URI"]);
-        var_dump($requestParameters);
-        $this->resource = $requestParameters[3] ?? "";
-        $this->resourceId = $requestParameters[4] ?? "";
+        $this->resource = $requestParameters[1] ?? "";
+        $this->resourceId = $requestParameters[3] ?? "";
         $this->itemsService = new ItemsService();
     }
 
@@ -25,50 +24,37 @@ class HttpRequestHandler
     {
         $method = strtolower($_SERVER["REQUEST_METHOD"]);
         if (!in_array($method, $this->allowedMethods)) {
-            $this->sendErrorResponse(405, "invalid method");
+            $response = [
+                "status" => false,
+                "message" => "BadRequest"
+            ];
+            RequestHandlers::sendResponse($response, 405);
         }
     }
 
     public function validateResource()
     {
         if (!in_array($this->resource, $this->allowedResources)) {
-            $this->sendErrorResponse(400, "Undefined Resource");
+            $response = [
+                "status" => false,
+                "message" => "BadRequest"
+            ];
+            RequestHandlers::sendResponse($response, 400);
         }
     }
 
-    private function sendErrorResponse($status, $error)
-    {
-        $response = [
-            "status" => false,
-            "message" => $error
-        ];
 
-        http_response_code($status);
-        header("Content-Type:application/json");
-
-        echo json_encode($response, true);
-    }
-
-    private function sendResponse($response)
-    {
-        http_response_code(200);
-        header("Content-Type:application/json");
-
-        echo json_encode($response, true);
-    }
-
-
-    #[NoReturn] public function getItems()
+    public function getItems()
     {
         header("Content-Type:application/json");
         $items = $this->itemsService->getAllItems();
-        $this->sendResponse($items);
+        RequestHandlers::sendResponse($items, 200);
     }
 
-    #[NoReturn] public function getItem()
+    public function getItem()
     {
         header("Content-Type:application/json");
         $items = $this->itemsService->selectItem($this->resourceId);
-        $this->sendResponse($items);
+        RequestHandlers::sendResponse($items, 200);
     }
 }

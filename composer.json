@@ -16,9 +16,10 @@
     "classmap": [
       "Models",
       "Services",
-      "Handlers",
+      "Contollers",
       "Utilities",
-      "Views"
+      "Views",
+      "Handlers"
     ],
     "files": [
       "config.php"

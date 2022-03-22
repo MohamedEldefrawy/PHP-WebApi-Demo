@@ -2,16 +2,27 @@
 
 class Routes
 {
+    private static $uri;
+
     public static function router()
     {
         $request = $_SERVER['REQUEST_URI'];
-        if (str_contains($_SERVER['REQUEST_URI'], "/item/id")) {
-            $uri = "/item/id";
-        } else if (str_contains($_SERVER['REQUEST_URI'], "/item")) {
-            $uri = "/item";
+        if (str_contains($_SERVER['REQUEST_URI'], "/items/id")) {
+            Routes::$uri = "/items/id/";
+        } else if (str_contains($_SERVER['REQUEST_URI'], "/items")) {
+            Routes::$uri = "/items/";
+        } else {
+            $badRequest = [
+                "status" => false,
+                "message" => "Bad request",
+            ];
+
+            RequestHandlers::sendResponse($badRequest, 404);
         }
 
-        switch ($request) {
+        $requestParameters = explode("/", $_SERVER["REQUEST_URI"]);
+
+        switch (Routes::$uri) {
             case '/items':
                 require_once('./Views/glasses.php');
                 break;

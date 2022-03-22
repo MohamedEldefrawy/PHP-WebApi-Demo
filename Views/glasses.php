@@ -1,13 +1,13 @@
 <?php
-$request = new HttpRequestHandler();
-$request->validateMethod();
-$request->validateResource();
+$itemsController = new ItemsControllers();
+$itemsController->validateMethod();
+$itemsController->validateResource();
 $method = strtolower($_SERVER["REQUEST_METHOD"]);
 switch ($method) {
     case "get" :
     {
         echo $method;
-        $request->getItems();
+        $itemsController->getItems();
         break;
     }
 
