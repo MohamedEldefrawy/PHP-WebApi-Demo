@@ -1,5 +1,6 @@
 <?php
 
+namespace HttpHandlers;
 class ResponseHandlers
 {
     public static function sendResponse($response, $statusCode)

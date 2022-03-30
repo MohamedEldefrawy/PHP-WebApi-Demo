@@ -1,4 +1,7 @@
 <?php
+
+use Controller\ItemsControllers;
+
 $itemsController = new ItemsControllers();
 $itemsController->validateMethod();
 $itemsController->validateResource();

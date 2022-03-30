@@ -1,8 +1,13 @@
 <?php
 
+namespace Utilities;
+
+use HttpHandlers\ResponseHandlers;
+use Services\ItemsService;
+
 class Routes
 {
-    private static $uri;
+    private static string $uri;
 
     public static function router()
     {
@@ -20,8 +25,6 @@ class Routes
 
             ResponseHandlers::sendResponse($badRequest, 404);
         }
-
-//        var_dump($items->getAllItems());
 
         switch (Routes::$uri) {
             case '/items':

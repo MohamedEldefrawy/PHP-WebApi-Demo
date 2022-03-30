@@ -1,5 +1,9 @@
 <?php
 
+namespace Services;
+
+use Models\DbContext;
+
 class ItemsService
 {
     private DbContext $dbContext;

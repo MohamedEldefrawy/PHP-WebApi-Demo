@@ -10,7 +10,8 @@
     }
   ],
   "require": {
-    "illuminate/database": "*"
+    "illuminate/database": "*",
+    "ext-json": "*"
   },
   "autoload": {
     "classmap": [
@@ -21,6 +22,13 @@
       "Views",
       "Handlers"
     ],
+    "psr-4": {
+      "Controller\\": "Contollers",
+      "HttpHandlers\\": "Handlers",
+      "Services\\": "Services",
+      "Utilities\\": "Utilities",
+      "Models\\": "Models"
+    },
     "files": [
       "config.php"
     ]

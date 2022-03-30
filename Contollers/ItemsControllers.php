@@ -1,8 +1,13 @@
 <?php
 
+namespace Controller;
+
+use HttpHandlers\ResponseHandlers;
+use Services\ItemsService;
+
 class ItemsControllers
 {
-    private array $params = array();
+//    private array $params = array();
     private string $resource;
     private string $resourceId;
     private array $allowedMethods = ["get", "post", "delete"];
