@@ -2,7 +2,7 @@
 
 namespace Controller;
 
-use HttpHandlers\ResponseHandlers;
+use HttpHandlers\ResponseSender;
 use Services\ItemsService;
 
 class ItemsControllers
@@ -31,7 +31,7 @@ class ItemsControllers
                 "status" => false,
                 "message" => "BadRequest"
             ];
-            ResponseHandlers::sendResponse($response, 405);
+            ResponseSender::sendResponse($response, 405);
         }
     }
 
@@ -42,7 +42,7 @@ class ItemsControllers
                 "status" => false,
                 "message" => "BadRequest"
             ];
-            ResponseHandlers::sendResponse($response, 400);
+            ResponseSender::sendResponse($response, 400);
         }
     }
 
@@ -51,20 +51,20 @@ class ItemsControllers
     {
         header("Content-Type:application/json");
         $items = $this->itemsService->getAllMeals();
-        ResponseHandlers::sendResponse($items, 200);
+        ResponseSender::sendResponse($items, 200);
     }
 
     public function getItem()
     {
         header("Content-Type:application/json");
         $items = $this->itemsService->selectMeal($this->resourceId);
-        ResponseHandlers::sendResponse($items, 200);
+        ResponseSender::sendResponse($items, 200);
     }
 
     public function deleteItem()
     {
         header("Content-Type:application/json");
         $items = $this->itemsService->deleteMeal($this->resourceId);
-        ResponseHandlers::sendResponse($items, 200);
+        ResponseSender::sendResponse($items, 200);
     }
 }

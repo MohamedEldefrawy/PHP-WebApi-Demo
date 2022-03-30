@@ -2,7 +2,9 @@
 
 namespace Utilities;
 
-use HttpHandlers\ResponseHandlers;
+use HttpHandlers\GlassesResponseHandler\GlassesHandler;
+use HttpHandlers\GlassesResponseHandler\GlassHandler;
+use HttpHandlers\ResponseSender;
 use Services\ItemsService;
 
 class Routes
@@ -23,15 +25,15 @@ class Routes
                 "message" => "Bad request",
             ];
 
-            ResponseHandlers::sendResponse($badRequest, 404);
+            ResponseSender::sendResponse($badRequest, 404);
         }
 
         switch (Routes::$uri) {
             case '/items':
-                require_once("./Views/glasses.php");
+                new GlassesHandler();
                 break;
             case '/items/id':
-                require_once('./Views/glass.php');
+                new GlassHandler();
                 break;
         }
     }

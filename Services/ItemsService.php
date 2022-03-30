@@ -20,9 +20,9 @@ class ItemsService
         $index = (isset($_GET["index"]) && is_numeric($_GET["index"]) && $_GET["index"] > 0) ? (int)$_GET["index"] : 0;
         $all_records = $this->dbContext->getDbContext()::table("meals")->skip($index)->take(PAGE_SIZE)->get();
         $next_index = $index + PAGE_SIZE;
-        $next_link = "http://localhost:8080/index.php?index=$next_index";
-        $previous_index = (($index - PAGE_SIZE) >= 0) ? $index - PAGE_SIZE : 0;
-        $previous_link = "http://localhost:8080/index.php?index=$previous_index";
+        $next_link = "http://localhost:3500/index.php?index=$next_index";
+        $previous_index = ($index - PAGE_SIZE >= 0) ? $index - PAGE_SIZE : 0;
+        $previous_link = "http://localhost:3500/index.php?index=$previous_index";
 
         if ($all_records->count() > 0) {
             return [
@@ -47,12 +47,12 @@ class ItemsService
         if ($result)
             return [
                 'success' => true,
-                'message' => "Item has been created"
+                'message' => "Meal has been created"
             ];
         else
             return [
                 'success' => false,
-                'message' => "Item hasn't been created"
+                'message' => "Meal hasn't been created"
             ];
     }
 
@@ -62,13 +62,13 @@ class ItemsService
         if ($result > 0)
             return [
                 'success' => true,
-                'message' => "Selected item has been deleted"
+                'message' => "Selected meal has been deleted"
             ];
         else
             return
                 [
                     'success' => false,
-                    'message' => "Selected item hasn't been deleted"
+                    'message' => "Selected meal hasn't been deleted"
                 ];
     }
 
@@ -78,13 +78,13 @@ class ItemsService
         if ($result != null) {
             return [
                 'success' => true,
-                'message' => "Selected item has been retrieved successfully",
+                'message' => "Selected meal has been retrieved successfully",
                 'data' => $result
             ];
         } else {
             return [
                 'success' => false,
-                'message' => "Selected item hasn't been retrieved"
+                'message' => "Selected meal hasn't been retrieved"
             ];
         }
     }

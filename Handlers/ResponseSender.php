@@ -1,7 +1,7 @@
 <?php
 
 namespace HttpHandlers;
-class ResponseHandlers
+class ResponseSender
 {
     public static function sendResponse($response, $statusCode)
     {
