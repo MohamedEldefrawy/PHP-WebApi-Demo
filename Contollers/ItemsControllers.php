@@ -50,21 +50,21 @@ class ItemsControllers
     public function getItems()
     {
         header("Content-Type:application/json");
-        $items = $this->itemsService->getAllItems();
+        $items = $this->itemsService->getAllMeals();
         ResponseHandlers::sendResponse($items, 200);
     }
 
     public function getItem()
     {
         header("Content-Type:application/json");
-        $items = $this->itemsService->selectItem($this->resourceId);
+        $items = $this->itemsService->selectMeal($this->resourceId);
         ResponseHandlers::sendResponse($items, 200);
     }
 
     public function deleteItem()
     {
         header("Content-Type:application/json");
-        $items = $this->itemsService->deleteItem($this->resourceId);
+        $items = $this->itemsService->deleteMeal($this->resourceId);
         ResponseHandlers::sendResponse($items, 200);
     }
 }

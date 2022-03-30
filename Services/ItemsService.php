@@ -15,10 +15,10 @@ class ItemsService
         $this->dbContext->getDbContext()->bootEloquent();
     }
 
-    public function getAllItems(): array
+    public function getAllMeals(): array
     {
         $index = (isset($_GET["index"]) && is_numeric($_GET["index"]) && $_GET["index"] > 0) ? (int)$_GET["index"] : 0;
-        $all_records = $this->dbContext->getDbContext()::table("items")->skip($index)->take(PAGE_SIZE)->get();
+        $all_records = $this->dbContext->getDbContext()::table("meals")->skip($index)->take(PAGE_SIZE)->get();
         $next_index = $index + PAGE_SIZE;
         $next_link = "http://localhost:8080/index.php?index=$next_index";
         $previous_index = (($index - PAGE_SIZE) >= 0) ? $index - PAGE_SIZE : 0;
@@ -30,20 +30,20 @@ class ItemsService
                 "data" => $all_records,
                 "next_link" => $next_link,
                 "previous_link" => $previous_link,
-                'message' => "all items has been retrieved successfully"
+                'message' => "all meals has been retrieved successfully"
             ];
         } else {
             return [
                 'success' => false,
-                'message' => "all items hasn't been retrieved successfully"
+                'message' => "all meals hasn't been retrieved successfully"
             ];
         }
 
     }
 
-    public function insertItem(array $itemData): array
+    public function insertMeal(array $itemData): array
     {
-        $result = $this->dbContext->getDbContext()::table("items")->insert($itemData);
+        $result = $this->dbContext->getDbContext()::table("meals")->insert($itemData);
         if ($result)
             return [
                 'success' => true,
@@ -56,9 +56,9 @@ class ItemsService
             ];
     }
 
-    public function deleteItem(int $id): array
+    public function deleteMeal(int $id): array
     {
-        $result = $this->dbContext->getDbContext()::table('items')->where('id', $id)->delete();
+        $result = $this->dbContext->getDbContext()::table('meals')->where('id', $id)->delete();
         if ($result > 0)
             return [
                 'success' => true,
@@ -72,9 +72,9 @@ class ItemsService
                 ];
     }
 
-    public function selectItem($id): array
+    public function selectMeal($id): array
     {
-        $result = $this->dbContext->getDbContext()::table('items')->where('id', $id)->first();
+        $result = $this->dbContext->getDbContext()::table('meals')->where('id', $id)->first();
         if ($result != null) {
             return [
                 'success' => true,

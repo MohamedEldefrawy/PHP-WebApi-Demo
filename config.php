@@ -2,8 +2,8 @@
 const CONNECTION_STRING = [
     "driver" => "mysql",
     "host" => "127.0.0.1",
-    "database" => "northwind",
+    "database" => "meals",
     "username" => "root",
-    "password" => ""
+    "password" => "Mohamed$5265104@D"
 ];
 const PAGE_SIZE = 10;
