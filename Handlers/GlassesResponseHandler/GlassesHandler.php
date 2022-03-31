@@ -16,7 +16,6 @@ class GlassesHandler
         switch ($method) {
             case "get" :
             {
-                echo $method;
                 $itemsController->getItems();
                 break;
             }

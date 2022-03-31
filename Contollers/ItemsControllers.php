@@ -3,6 +3,7 @@
 namespace Controller;
 
 use HttpHandlers\ResponseSender;
+use JetBrains\PhpStorm\NoReturn;
 use Services\ItemsService;
 
 class ItemsControllers
@@ -47,22 +48,54 @@ class ItemsControllers
     }
 
 
-    public function getItems()
+    #[NoReturn] public function getItems()
     {
+        $http_origin = $_SERVER['HTTP_ORIGIN'];
+
+        $allowed_domains = array(
+            'http://localhost:63343',
+        );
+
+
+        if (in_array($http_origin, $allowed_domains)) {
+            header("Access-Control-Allow-Origin: $http_origin");
+        }
         header("Content-Type:application/json");
+
         $items = $this->itemsService->getAllMeals();
         ResponseSender::sendResponse($items, 200);
     }
 
-    public function getItem()
+    #[NoReturn] public function getItem()
     {
+        $http_origin = $_SERVER['HTTP_ORIGIN'];
+
+        $allowed_domains = array(
+            'http://localhost:63343',
+        );
+
+
+        if (in_array($http_origin, $allowed_domains)) {
+            header("Access-Control-Allow-Origin: $http_origin");
+        }
         header("Content-Type:application/json");
+
         $items = $this->itemsService->selectMeal($this->resourceId);
         ResponseSender::sendResponse($items, 200);
     }
 
-    public function deleteItem()
+    #[NoReturn] public function deleteItem()
     {
+        $http_origin = $_SERVER['HTTP_ORIGIN'];
+
+        $allowed_domains = array(
+            'http://localhost:63343',
+        );
+
+        if (in_array($http_origin, $allowed_domains)) {
+            header("Access-Control-Allow-Origin: $http_origin");
+        }
+
         header("Content-Type:application/json");
         $items = $this->itemsService->deleteMeal($this->resourceId);
         ResponseSender::sendResponse($items, 200);

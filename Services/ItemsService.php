@@ -20,9 +20,9 @@ class ItemsService
         $index = (isset($_GET["index"]) && is_numeric($_GET["index"]) && $_GET["index"] > 0) ? (int)$_GET["index"] : 0;
         $all_records = $this->dbContext->getDbContext()::table("meals")->skip($index)->take(PAGE_SIZE)->get();
         $next_index = $index + PAGE_SIZE;
-        $next_link = "http://localhost:3500/index.php?index=$next_index";
+        $next_link = "http://localhost:3000/index.php?index=$next_index";
         $previous_index = ($index - PAGE_SIZE >= 0) ? $index - PAGE_SIZE : 0;
-        $previous_link = "http://localhost:3500/index.php?index=$previous_index";
+        $previous_link = "http://localhost:3000/index.php?index=$previous_index";
 
         if ($all_records->count() > 0) {
             return [
